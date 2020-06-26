@@ -12,10 +12,13 @@ from . import utilities
 
 class TestThermoPhase(utilities.CanteraTest):
     def setUp(self):
-        self.phase = ct.Solution('h2o2.xml')
+        self.phase = ct.Solution('h2o2.yaml')
 
     def test_source(self):
-        self.assertEqual(self.phase.source, 'h2o2.xml')
+        self.assertEqual(self.phase.source, 'h2o2.yaml')
+
+    def test_description(self):
+        self.phase.description.startswith('Hydrogen-Oxygen submechanism')
 
     def test_base_attributes(self):
         self.assertIsInstance(self.phase.name, str)

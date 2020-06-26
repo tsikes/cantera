@@ -37,6 +37,16 @@ public:
     //! Set the name of this Solution object
     void setName(const std::string& name);
 
+    //! Return the description of this Solution object
+    std::string description() const {
+        return m_description;
+    }
+
+    //! Set the description of this Solution object
+    void setDescription(const std::string& desc) {
+        m_description = desc;
+    }
+
     //! Set the ThermoPhase object
     void setThermo(shared_ptr<ThermoPhase> thermo);
 
@@ -62,6 +72,8 @@ public:
     }
 
 protected:
+    std::string m_description; //!< Description of Solution object
+
     shared_ptr<ThermoPhase> m_thermo;  //!< ThermoPhase manager
     shared_ptr<Kinetics> m_kinetics;  //!< Kinetics manager
     shared_ptr<Transport> m_transport;  //!< Transport manager

@@ -17,7 +17,9 @@
 namespace Cantera
 {
 
-Solution::Solution() {}
+Solution::Solution() :
+    m_description("") {
+}
 
 std::string Solution::name() const {
     if (m_thermo) {
@@ -65,6 +67,17 @@ shared_ptr<Solution> newSolution(const std::string& infile,
 
     // instantiate Solution object
     auto sol = Solution::create();
+
+    // description
+    size_t dot = infile.find_last_of(".");
+    std::string extension;
+    if (dot != npos) {
+        extension = toLowerCopy(infile.substr(dot+1));
+    }
+    if (extension == "yml" || extension == "yaml") {
+        AnyMap root = AnyMap::fromYamlFile(infile);
+        sol->setDescription(root.getString("description", ""));
+    }
 
     // thermo phase
     sol->setThermo(shared_ptr<ThermoPhase>(newPhase(infile, name)));

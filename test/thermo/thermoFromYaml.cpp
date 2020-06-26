@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include "gmock/gmock.h"
 #include "cantera/thermo/ThermoFactory.h"
 #include "cantera/thermo/Elements.h"
 #include "cantera/thermo/MolalityVPSSTP.h"
@@ -17,6 +18,12 @@ shared_ptr<ThermoPhase> newThermo(const std::string& fileName,
 }
 
 } // namespace
+
+TEST(ThermoFromYaml, description)
+{
+    auto sol = newSolution("gri30.yaml");
+    EXPECT_THAT(sol->description(), ::testing::HasSubstr("GRI-Mech Version 3.0 7/30/99"));
+}
 
 TEST(ThermoFromYaml, simpleIdealGas)
 {
