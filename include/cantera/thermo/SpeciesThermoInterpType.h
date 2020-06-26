@@ -264,7 +264,20 @@ public:
         throw NotImplementedError("SpeciesThermoInterpType::resetHf298");
     }
 
+    //! Return the annotation string describing the parameterization
+    std::string note() const {
+        return m_note;
+    }
+
+    //! Set the annotation string describing the parameterization
+    void setNote(const std::string& note) {
+        m_note = note;
+    }
+
 protected:
+    //! Annotation string describing the parameterization
+    std::string m_note;
+
     //!  lowest valid temperature
     doublereal m_lowT;
     //! Highest valid temperature

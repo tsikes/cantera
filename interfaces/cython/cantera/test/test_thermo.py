@@ -20,6 +20,10 @@ class TestThermoPhase(utilities.CanteraTest):
     def test_description(self):
         self.phase.description.startswith('Hydrogen-Oxygen submechanism')
 
+    def test_speciesthermo_note(self):
+        spc = self.phase.species('H2')
+        self.assertEqual(spc.thermo.note, 'TPIS78')
+
     def test_base_attributes(self):
         self.assertIsInstance(self.phase.name, str)
         self.assertIsInstance(self.phase.phase_of_matter, str)

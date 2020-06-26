@@ -79,9 +79,14 @@ cdef class SpeciesThermo:
                                            T_high, P_ref, &data[0])
             return data
 
+    property note:
+        """ Annotation string describing the parameterization. """
+        def __get__(self):
+            return pystr(self.spthermo.note())
+
     def _check_n_coeffs(self, n):
-        """ 
-        Check whether number of coefficients is compatible with a given 
+        """
+        Check whether number of coefficients is compatible with a given
         parameterization prior to instantiation of the underlying C++ object.
         """
         raise NotImplementedError('Needs to be overloaded')

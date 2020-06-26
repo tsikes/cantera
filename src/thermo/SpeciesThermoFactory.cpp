@@ -445,22 +445,27 @@ unique_ptr<SpeciesThermoInterpType> newSpeciesThermo(const AnyMap& node)
     if (model == "NASA7") {
         unique_ptr<NasaPoly2> thermo(new NasaPoly2());
         setupNasaPoly(*thermo, node);
+        thermo->setNote(node.getString("note", ""));
         return unique_ptr<SpeciesThermoInterpType>(move(thermo));
     } else if (model == "Shomate") {
         unique_ptr<ShomatePoly2> thermo(new ShomatePoly2());
         setupShomatePoly(*thermo, node);
+        thermo->setNote(node.getString("note", ""));
         return unique_ptr<SpeciesThermoInterpType>(move(thermo));
     } else if (model == "NASA9") {
         unique_ptr<Nasa9PolyMultiTempRegion> thermo(new Nasa9PolyMultiTempRegion());
         setupNasa9Poly(*thermo, node);
+        thermo->setNote(node.getString("note", ""));
         return unique_ptr<SpeciesThermoInterpType>(move(thermo));
     } else if (model == "constant-cp") {
         unique_ptr<ConstCpPoly> thermo(new ConstCpPoly());
         setupConstCp(*thermo, node);
+        thermo->setNote(node.getString("note", ""));
         return unique_ptr<SpeciesThermoInterpType>(move(thermo));
     } else if (model == "piecewise-Gibbs") {
         unique_ptr<Mu0Poly> thermo(new Mu0Poly());
         setupMu0(*thermo, node);
+        thermo->setNote(node.getString("note", ""));
         return unique_ptr<SpeciesThermoInterpType>(move(thermo));
     } else {
         throw CanteraError("newSpeciesThermo",
