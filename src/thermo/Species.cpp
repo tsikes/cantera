@@ -17,6 +17,7 @@ namespace Cantera {
 Species::Species()
     : charge(0.0)
     , size(1.0)
+    , m_note("")
 {
 }
 
@@ -26,6 +27,7 @@ Species::Species(const std::string& name_, const compositionMap& comp_,
     , composition(comp_)
     , charge(charge_)
     , size(size_)
+    , m_note("")
 {
 }
 
@@ -96,6 +98,8 @@ unique_ptr<Species> newSpecies(const AnyMap& node)
     } else {
         s->thermo.reset(new SpeciesThermoInterpType());
     }
+
+    s->setNote(node.getString("note", ""));
 
     s->size = node.getDouble("sites", 1.0);
     if (s->composition.find("E") != s->composition.end()) {

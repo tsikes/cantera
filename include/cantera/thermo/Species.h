@@ -35,6 +35,16 @@ public:
     Species& operator=(const Species& other) = delete;
     ~Species();
 
+    //! Return annotation string describing the species
+    std::string note() const {
+        return m_note;
+    }
+
+    //! Set annotation string describing the species
+    void setNote(const std::string& note) {
+        m_note = note;
+    }
+
     //! The name of the species
     std::string name;
 
@@ -60,6 +70,10 @@ public:
 
     //! Input parameters used to define a species, e.g. from a YAML input file.
     AnyMap input;
+
+protected:
+    //! Annotation string describing the species
+    std::string m_note;
 };
 
 //! Create a new Species object from a 'species' XML_Node.
