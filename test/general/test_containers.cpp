@@ -39,6 +39,17 @@ TEST(AnyValue, getMapWhere_initial_list)
     EXPECT_EQ(m["data"].getMapWhere("a", "baz")["x"].asInt(), 4);
 }
 
+TEST(AnyValue, numeric_yaml_string)
+{
+    AnyMap m = AnyMap::fromYamlString(
+        "data: {a: '12345', b: '123.45'}");
+
+    EXPECT_THROW(m["data"]["a"].asInt(), CanteraError);
+    EXPECT_EQ(m["data"]["a"].asString(), "12345");
+    EXPECT_THROW(m["data"]["b"].asDouble(), CanteraError);
+    EXPECT_EQ(m["data"]["b"].asString(), "123.45");
+}
+
 TEST(AnyValue, getMapWhere_initial_map)
 {
     AnyMap m = AnyMap::fromYamlString(
