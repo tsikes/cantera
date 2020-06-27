@@ -27,6 +27,7 @@ Reaction::Reaction(int type)
     , duplicate(false)
     , allow_nonreactant_orders(false)
     , allow_negative_orders(false)
+    , m_note("")
 {
 }
 
@@ -39,6 +40,7 @@ Reaction::Reaction(int type, const Composition& reactants_,
     , duplicate(false)
     , allow_nonreactant_orders(false)
     , allow_negative_orders(false)
+    , m_note("")
 {
 }
 
@@ -1086,26 +1088,32 @@ unique_ptr<Reaction> newReaction(const AnyMap& node, const Kinetics& kin)
     if (type == "elementary") {
         unique_ptr<ElementaryReaction> R(new ElementaryReaction());
         setupElementaryReaction(*R, node, kin);
+        R->setNote(node.getString("note", ""));
         return unique_ptr<Reaction>(move(R));
     } else if (type == "three-body") {
         unique_ptr<ThreeBodyReaction> R(new ThreeBodyReaction());
         setupThreeBodyReaction(*R, node, kin);
+        R->setNote(node.getString("note", ""));
         return unique_ptr<Reaction>(move(R));
     } else if (type == "falloff") {
         unique_ptr<FalloffReaction> R(new FalloffReaction());
         setupFalloffReaction(*R, node, kin);
+        R->setNote(node.getString("note", ""));
         return unique_ptr<Reaction>(move(R));
     } else if (type == "chemically-activated") {
         unique_ptr<ChemicallyActivatedReaction> R(new ChemicallyActivatedReaction());
         setupFalloffReaction(*R, node, kin);
+        R->setNote(node.getString("note", ""));
         return unique_ptr<Reaction>(move(R));
     } else if (type == "pressure-dependent-Arrhenius") {
         unique_ptr<PlogReaction> R(new PlogReaction());
         setupPlogReaction(*R, node, kin);
+        R->setNote(node.getString("note", ""));
         return unique_ptr<Reaction>(move(R));
     } else if (type == "Chebyshev") {
         unique_ptr<ChebyshevReaction> R(new ChebyshevReaction());
         setupChebyshevReaction(*R, node, kin);
+        R->setNote(node.getString("note", ""));
         return unique_ptr<Reaction>(move(R));
     } else {
         throw InputFileError("newReaction", node["type"],

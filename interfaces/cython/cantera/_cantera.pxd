@@ -313,6 +313,7 @@ cdef extern from "cantera/kinetics/Reaction.h" namespace "Cantera":
         string productString()
         string equation()
         void validate() except +translate_exception
+        string note()
         int reaction_type
         Composition reactants
         Composition products

@@ -41,6 +41,16 @@ public:
     //! valid.
     virtual void validate();
 
+    //! Return annotation string describing the reaction
+    std::string note() const {
+        return m_note;
+    }
+
+    //! Set annotation string describing the reaction
+    void setNote(const std::string& note) {
+        m_note = note;
+    }
+
     //! Type of the reaction. The valid types are listed in the file,
     //! reaction_defs.h, with constants ending in `RXN`.
     int reaction_type;
@@ -75,6 +85,10 @@ public:
 
     //! Input data used for specific models
     AnyMap input;
+
+protected:
+    //! Annotation string describing the reaction
+    std::string m_note;
 };
 
 
