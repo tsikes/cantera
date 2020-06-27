@@ -150,6 +150,7 @@ cdef extern from "cantera/thermo/ThermoPhase.h" namespace "Cantera":
 
         # miscellaneous
         string type()
+        string note()
         string phaseOfMatter() except +translate_exception
         string report(cbool, double) except +translate_exception
         cbool hasPhaseTransition()

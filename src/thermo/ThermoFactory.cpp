@@ -458,6 +458,8 @@ void setupPhase(ThermoPhase& thermo, AnyMap& phaseNode, const AnyMap& rootNode)
         warn_deprecated(method, msg);
     }
 
+    thermo.setNote(phaseNode.getString("note", ""));
+
     // Add elements
     if (phaseNode.hasKey("elements")) {
         if (phaseNode.getBool("skip-undeclared-elements", false)) {

@@ -29,7 +29,8 @@ Phase::Phase() :
     m_mmw(0.0),
     m_stateNum(-1),
     m_mm(0),
-    m_elem_type(0)
+    m_elem_type(0),
+    m_note("")
 {
 }
 

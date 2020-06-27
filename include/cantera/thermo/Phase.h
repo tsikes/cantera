@@ -177,6 +177,16 @@ public:
         return "Phase";
     }
 
+    //! Return annotation string describing the phase
+    std::string note() const {
+        return m_note;
+    }
+
+    //! Set annotation string describing the phase
+    void setNote(const std::string& note) {
+        m_note = note;
+    }
+
     //!@} end group Name
 
     //! @name Element and Species Information
@@ -1003,6 +1013,9 @@ private:
     vector_int m_atomicNumbers; //!< element atomic numbers
     std::vector<std::string> m_elementNames; //!< element names
     vector_int m_elem_type; //!< Vector of element types
+
+    //! Annotation string describing the phase
+    std::string m_note;
 
     //! Entropy at 298.15 K and 1 bar of stable state pure elements (J kmol-1)
     vector_fp m_entropy298;
