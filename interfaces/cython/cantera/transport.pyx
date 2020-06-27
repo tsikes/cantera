@@ -56,6 +56,11 @@ cdef class GasTransportData:
             dipole, polarizability, rotational_relaxation, acentric_factor,
             dispersion_coefficient, quadrupole_polarizability)
 
+    property note:
+        """ Annotation string describing transport data. """
+        def __get__(self):
+            return pystr(self.data.note())
+
     property geometry:
         """
         Get/Set the string specifying the molecular geometry. One of `atom`,

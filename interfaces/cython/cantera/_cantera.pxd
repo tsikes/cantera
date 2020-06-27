@@ -471,6 +471,7 @@ cdef extern from "cantera/transport/TransportData.h" namespace "Cantera":
         CxxGasTransportData(string, double, double, double, double, double, double, double, double)
         void setCustomaryUnits(string, double, double, double, double, double, double, double, double)
 
+        string note()
         string geometry
         double diameter
         double well_depth

@@ -19,13 +19,27 @@ class XML_Node;
 class TransportData
 {
 public:
-    TransportData() {}
+    TransportData() : m_note("") {}
     virtual ~TransportData() {}
 
     virtual void validate(const Species& species) {}
 
+    //! Return annotation string describing transport data
+    std::string note() const {
+        return m_note;
+    }
+
+    //! Set annotation string describing transport data
+    void setNote(const std::string& note) {
+        m_note = note;
+    }
+
     //! Input data used for specific models
     AnyMap input;
+
+protected:
+    //! Annotation string describing transport data
+    std::string m_note;
 };
 
 //! Transport data for a single gas-phase species which can be used in

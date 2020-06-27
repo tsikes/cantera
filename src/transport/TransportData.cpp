@@ -14,7 +14,8 @@
 namespace Cantera
 {
 GasTransportData::GasTransportData()
-    : diameter(0.0)
+    : TransportData()
+    , diameter(0.0)
     , well_depth(0.0)
     , dipole(0.0)
     , polarizability(0.0)
@@ -30,7 +31,8 @@ GasTransportData::GasTransportData(
         double diameter_, double well_depth_, double dipole_,
         double polarizability_, double rot_relax, double acentric,
         double dispersion, double quad_polar)
-    : geometry(geometry_)
+    : TransportData()
+    , geometry(geometry_)
     , diameter(diameter_)
     , well_depth(well_depth_)
     , dipole(dipole_)
@@ -171,6 +173,7 @@ void setupGasTransportData(GasTransportData& tr, const AnyMap& node)
     tr.setCustomaryUnits(geometry, diameter, welldepth, dipole, polar,
                          rot, acentric, dispersion, quad);
 
+    tr.setNote(node.getString("note", ""));
     tr.input = node;
 }
 
